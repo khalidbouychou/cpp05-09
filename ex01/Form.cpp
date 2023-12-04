@@ -39,5 +39,5 @@ std::ostream &operator<<(std::ostream &o, Form const &f)
     o << "Form name: " << f.getName() << "| isSigned: " << f.getIsSigned() << "| grade toSign: " << f.getGSign() << "| grade toExecute: " << f.getGExecute() << std::endl;
     return (o);
 }
-const char *Form::GradeTooHighException::what() const throw(){return ("Form --->  Grade too high");}
-const char *Form::GradeTooLowException::what() const throw() { return ("Form ---> Grade too low"); }
+const char *Form::GradeTooHighException::what() const throw(){return ("Form  Grade Too High");}
+const char *Form::GradeTooLowException::what() const throw() { return ("Form Grade Too Low"); }
