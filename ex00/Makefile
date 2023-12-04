@@ -4,13 +4,14 @@ SRCS = main.cpp Bureaucrat.cpp
 
 OBJCS = $(SRCS:.cpp=.o)
 
+FLAGS= -Wall -Wextra -Werror -std=c++98 
 $(NAME) : $(OBJCS)
-	c++ -Wall -Wextra -Werror $(OBJCS) -o $(NAME)
+	c++ $(FLAGS) $(OBJCS) -o $(NAME)
 
 all:$(NAME)
 
 %.o : %.cpp Bureaucrat.hpp
-	c++ -Wall -Wextra -Werror -c $< -o $@
+	c++ $(FLAGS)  -c $< -o $@
 
 clean:
 	rm -rf $(OBJCS)
@@ -19,5 +20,11 @@ fclean:clean
 	rm -rf $(NAME)
 
 re:fclean all
+
+git :
+	make fclean
+	git add .
+	git commit -m "updatecpp"
+	git push
 
 .PHONY: all clean fclean re
