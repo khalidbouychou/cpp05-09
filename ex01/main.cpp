@@ -19,8 +19,8 @@ int main(void)
     std::cout << "----------Not Signed-----------" << std::endl;
     try
     {
-        Bureaucrat b("khbouych", 2);
-        Form f("Bocal-Form", 1, 1);
+        Bureaucrat b("khbouych", 10);
+        Form f("Bocal-Form",1, 1);
         std::cout << b << std::endl;
         std::cout << "Form Grade : " << f.getGSign() << std::endl;
         b.signForm(f);

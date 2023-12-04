@@ -14,10 +14,10 @@ all:$(NAME)
 	c++ $(FLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJCS)
+	@rm -rf $(OBJCS)
 
 fclean:clean
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re:fclean all
 
