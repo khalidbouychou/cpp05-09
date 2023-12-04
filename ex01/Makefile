@@ -4,7 +4,7 @@ SRCS = main.cpp Bureaucrat.cpp Form.cpp
 
 OBJCS = $(SRCS:.cpp=.o)
 
-FLAGS= -Wall -Wextra -Werror -std=c++98
+FLAGS= -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 $(NAME) : $(OBJCS)
 	c++ $(FLAGS) $(OBJCS) -o $(NAME)
 
@@ -26,4 +26,5 @@ git :
 	git add .
 	git commit -m "updatecpp"
 	git push
+
 .PHONY: all clean fclean re
