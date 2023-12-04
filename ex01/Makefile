@@ -4,7 +4,7 @@ SRCS = main.cpp Bureaucrat.cpp Form.cpp
 
 OBJCS = $(SRCS:.cpp=.o)
 
-FLAGS= -Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
+FLAGS= -Wall -Wextra -Werror -std=c++98
 $(NAME) : $(OBJCS)
 	c++ $(FLAGS) $(OBJCS) -o $(NAME)
 

@@ -1,9 +1,7 @@
 #pragma once
 #include <iostream>
-#include <string>
 #include "Bureaucrat.hpp"
-
-
+class Bureaucrat;
 class Form
 {
     private:
@@ -20,9 +18,8 @@ class Form
         std::string getName() const;
         bool getIsSigned() const;
         int getGSign() const;
-        int getGExecute() const;
-        void beSigned(Bureaucrat const &b);
-        void signForm(Bureaucrat const &b);
+        int getGExecute()const;
+        void beSigned(Bureaucrat  &b);
         class GradeTooLowException: public std::exception
         {
             public:

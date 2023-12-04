@@ -4,14 +4,12 @@ int main(void)
 {
     try
     {
-        Bureaucrat b1("khbouych", 1);
-        b1.decrementGrade();
-        std::cout << b1;
-        Form f1("Bocal-form",100,10);
-        std::cout << "BEFORE --> "<< f1;
-        f1.beSigned(b1);
-        f1.signForm(b1);
-        std::cout << "AFTER --> "<<f1;
+        Bureaucrat b("khbouych", 1);
+        Form f("Bocal-Form", 1, 1);
+        std::cout << b;
+        std::cout << f;
+        b.signForm(f);
+        std::cout << f;
     }
     catch(const std::exception& e)
     {
