@@ -4,7 +4,7 @@ SRCS = main.cpp Bureaucrat.cpp
 
 OBJCS = $(SRCS:.cpp=.o)
 
-FLAGS= -Wall -Wextra -Werror -std=c++98 
+FLAGS= -Wall -Wextra -Werror -std=c++98
 $(NAME) : $(OBJCS)
 	c++ $(FLAGS) $(OBJCS) -o $(NAME)
 
@@ -24,7 +24,7 @@ re:fclean all
 git :
 	make fclean
 	git add .
-	git commit -m "updatecpp"
+	git commit -m "updatecpp ex00-05"
 	git push
 
 .PHONY: all clean fclean re
