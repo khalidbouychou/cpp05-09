@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:02:34 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/06 19:36:37 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/06 19:39:08 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
     else
     {
         std::cout << "zzzzzzzzzzzzz trrrrrr ..... (noises)" << std::endl;
-        std::srand(std::time(NULL));
-        int nrandom = rand();
-        int var = nrandom % 2;
+        std::srand(std::time(0));
+        int var = rand() % 2;
 
         if (!var)
             std::cout << "Robotomization of " << this->target << " [--- failed ---]" << std::endl;
