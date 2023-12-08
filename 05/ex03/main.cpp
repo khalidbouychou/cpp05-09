@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:16:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/08 18:17:51 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:21:18 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,8 @@
 #include "PresidentialPardonForm.hpp"
 #include "Intern.hpp"
 
-
-void x(void)
-{
-    system("leaks ex03");
-}
 int main(void)
 {
-    atexit(x);
     std::cout << "------------------ROBOTOMY-------------------" << std::endl;
     try
     {

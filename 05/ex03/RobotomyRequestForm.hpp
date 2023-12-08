@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:02:36 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/06 17:37:43 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:20:55 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ class RobotomyRequestForm : public AForm
         RobotomyRequestForm();
         RobotomyRequestForm(std::string const &target_name);
         RobotomyRequestForm(RobotomyRequestForm const &);
-        RobotomyRequestForm &operator=(RobotomyRequestForm const &);
         ~RobotomyRequestForm();
+        RobotomyRequestForm &operator=(RobotomyRequestForm const &);
         void execute(Bureaucrat const & executor) const;
 };

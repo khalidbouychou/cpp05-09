@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:40:54 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/08 18:14:28 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:20:22 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@ PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm
 PresidentialPardonForm::PresidentialPardonForm(std::string const &target_name) : AForm("PresidentialPardonForm", 25, 5){this->target = target_name;}
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &f) : AForm(f){*this = f;}
 PresidentialPardonForm::~PresidentialPardonForm(){}
-
 PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm const &f)
 {
     if (this != &f)
         this->target = f.target;
     return (*this);
 }
-
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
     if (this->getIsSigned() == false)

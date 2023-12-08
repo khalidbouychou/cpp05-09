@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 16:17:02 by khbouych          #+#    #+#              #
-#    Updated: 2023/12/06 19:40:29 by khbouych         ###   ########.fr        #
+#    Updated: 2023/12/08 18:18:34 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,5 @@ fclean:clean
 	@rm -rf $(NAME) *_shrubbery
 
 re:fclean all
-
-git :
-	make fclean
-	git add .
-	git commit -m "updatecpp ex02-05"
-	git push
 
 .PHONY: all clean fclean re
