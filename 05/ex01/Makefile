@@ -5,29 +5,32 @@
 #                                                     +:+ +:+         +:+      #
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/12/06 16:17:02 by khbouych          #+#    #+#              #
-#    Updated: 2023/12/06 18:17:29 by khbouych         ###   ########.fr        #
+#    Created: 2023/12/06 16:15:27 by khbouych          #+#    #+#              #
+#    Updated: 2023/12/08 17:42:35 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = ex02
-SRCS = main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp PresidentialPardonForm.cpp
-HPP = Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp PresidentialPardonForm.hpp
+NAME = ex01
+
+SRCS = main.cpp Bureaucrat.cpp Form.cpp
+
 OBJCS = $(SRCS:.cpp=.o)
-F= -Wall -Wextra -Werror -std=c++98
+
+FLAGS= -Wall -Wextra -Werror -std=c++98
 $(NAME) : $(OBJCS)
-	c++ $(F) $(OBJCS) -o $(NAME)
+	c++ $(FLAGS) $(OBJCS) -o $(NAME)
+
 all:$(NAME)
-%.o : %.cpp $(HPP)
-	c++ $(F) -c $< -o $@
+
+%.o : %.cpp Bureaucrat.hpp Form.hpp
+	c++ $(FLAGS) -c $< -o $@
+
 clean:
 	@rm -rf $(OBJCS)
+
 fclean:clean
-	@rm -rf $(NAME) *_shrubbery
+	@rm -rf $(NAME)
+
 re:fclean all
-git :
-	make fclean
-	git add .
-	git commit -m "updatecpp ex02-05"
-	git push
+
 .PHONY: all clean fclean re

@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:22:33 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/06 18:06:32 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:04:16 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,71 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 void ShrubberyCreationForm::execute(const Bureaucrat &exec) const
 {
     if (this->getIsSigned() == false)
-        throw AForm::FormUntSignedException();
+        throw AForm::FormNotSignedException();
     if (exec.getGrade() > this->getGExecute())
         throw AForm::GradeTooLowException();
     std::ofstream ofs(this->target + "_shrubbery");
     ofs << "          *\n"
+        << "         ***\n"
+        << "        *****\n"
+        << "       *******\n"
+        << "      **********\n"
+        << "     ************\n"
+        << "    **************\n"
+        << "   *****************\n"
+        << "  ******KHBOUYCH*****\n"
+        << " *********************\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "           \n"
+        << "           \n"
+        << "          *\n"
+        << "         ***\n"
+        << "        *****\n"
+        << "       *******\n"
+        << "      **********\n"
+        << "     ************\n"
+        << "    **************\n"
+        << "   *****************\n"
+        << "  ******KHBOUYCH*****\n"
+        << " *********************\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "           \n"
+        << "           \n"
+        << "          *\n"
+        << "         ***\n"
+        << "        *****\n"
+        << "       *******\n"
+        << "      **********\n"
+        << "     ************\n"
+        << "    **************\n"
+        << "   *****************\n"
+        << "  ******KHBOUYCH*****\n"
+        << " *********************\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "          |\n"
+        << "           \n"
+        << "           \n"
+        << "          *\n"
         << "         ***\n"
         << "        *****\n"
         << "       *******\n"

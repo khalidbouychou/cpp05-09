@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 17:40:54 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/06 17:42:57 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:51:54 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ PresidentialPardonForm::~PresidentialPardonForm(){}
 
 PresidentialPardonForm &PresidentialPardonForm::operator=(PresidentialPardonForm const &f)
 {
-    this->target = f.target;
+    if (this != &f)
+        this->target = f.target;
     return (*this);
 }
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
     if (this->getIsSigned() == false)
-        throw AForm::FormUntSignedException();
+        throw AForm::FormNotSignedException();
     else if (executor.getGrade() > this->getGExecute())
         throw AForm::GradeTooLowException();
     else

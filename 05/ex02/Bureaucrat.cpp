@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:14:20 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/06 18:03:12 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:10:16 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,9 @@ void Bureaucrat::incrementGrade()
 }
 void Bureaucrat::decrementGrade()
 {
-    if (this->bgrade + 1 > 150)
+    this->bgrade++;
+    if (this->bgrade > 150)
         throw Bureaucrat::GradeTooLowException();
-    else
-        this->bgrade++;
 }
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat  &b)
 {

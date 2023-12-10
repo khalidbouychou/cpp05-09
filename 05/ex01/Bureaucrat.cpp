@@ -5,14 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 16:14:20 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/06 18:03:12 by khbouych         ###   ########.fr       */
+/*   Created: 2023/12/06 16:14:43 by khbouych          #+#    #+#             */
+/*   Updated: 2023/12/08 18:23:47 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat():name("Default Bureaucrat"), bgrade(150){}
+Bureaucrat::Bureaucrat():name("Default Bureaucrat"), bgrade(150){
+    if (this->bgrade < 1)
+        throw Bureaucrat::GradeTooHighException();
+    else if (this->bgrade > 150)
+        throw Bureaucrat::GradeTooLowException();
+}
 Bureaucrat::Bureaucrat(std::string const &_name, int bgrade): name(_name)
 {   if (bgrade < 1)
         throw Bureaucrat::GradeTooHighException();
@@ -36,10 +41,9 @@ void Bureaucrat::incrementGrade()
 }
 void Bureaucrat::decrementGrade()
 {
-    if (this->bgrade + 1 > 150)
+    this->bgrade++;
+    if (this->bgrade > 150)
         throw Bureaucrat::GradeTooLowException();
-    else
-        this->bgrade++;
 }
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat  &b)
 {
@@ -49,8 +53,7 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat  &b)
     const_cast<std::string&>(this->name) = b.name;
     return *this;
 }
-
-void Bureaucrat::signForm(AForm &form)
+void Bureaucrat::signForm(Form &form)
 {
     try
     {
@@ -60,18 +63,5 @@ void Bureaucrat::signForm(AForm &form)
     catch(const std::exception& e)
     {
         std::cout << this->name << " couldn’t sign " << form.getName() << " because " << e.what() << std::endl;
-    }
-}
-
-void Bureaucrat::executeForm(AForm const &form)
-{
-    try
-    {
-        form.execute(*this);
-        std::cout << this->name << " executed " << form.getName() << std::endl;
-    }
-    catch(const std::exception& e)
-    {
-        std::cout << this->name << " couldn’t execute " << form.getName() << " because " << e.what() << std::endl;
     }
 }

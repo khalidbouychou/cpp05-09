@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:14:02 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/06 17:45:45 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:51:54 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,4 @@ std::ostream &operator<<(std::ostream &o, AForm const &f)
 }
 const char *AForm::GradeTooHighException::what() const throw(){return ("(A)Form  Grade Too High");}
 const char *AForm::GradeTooLowException::what() const throw() { return ("(A)Form Grade Too Low");}
-const char *AForm::FormUntSignedException::what() const throw() { return ("(A)Form is not signed");}
+const char *AForm::FormNotSignedException::what() const throw() { return ("(A)Form is not signed");}

@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/06 16:16:00 by khbouych          #+#    #+#             */
+/*   Updated: 2023/12/08 18:11:42 by khbouych         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat():name("default"){}
+Bureaucrat::Bureaucrat():name("default"),bgrade(150){}
 Bureaucrat::Bureaucrat(Bureaucrat const &b): name(b.name),bgrade(b.bgrade){}
 Bureaucrat::Bureaucrat(std::string const &_name, int bgrade): name(_name)
 {    if (bgrade < 1)

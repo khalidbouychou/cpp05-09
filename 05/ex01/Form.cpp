@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Form.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/06 16:15:02 by khbouych          #+#    #+#             */
+/*   Updated: 2023/12/08 18:23:27 by khbouych         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "Form.hpp"
 
@@ -33,7 +44,6 @@ Form& Form::operator=(const Form  &f)
     this->isSigned = f.isSigned;
     return *this;
 }
-
 std::ostream &operator<<(std::ostream &o, Form const &f)
 {
     o << "Form name: " << f.getName() << "| isSigned: " << f.getIsSigned() << "| grade toSign: " << f.getGSign() << "| grade toExecute: " << f.getGExecute() << std::endl;

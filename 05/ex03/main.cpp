@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:16:52 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/08 18:21:18 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/09 20:47:18 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "PresidentialPardonForm.hpp"
 #include "Intern.hpp"
 
+
 int main(void)
 {
     std::cout << "------------------ROBOTOMY-------------------" << std::endl;
@@ -25,7 +26,7 @@ int main(void)
         Intern i1;
         Bureaucrat b("b1",1);
         AForm *f1 = i1.makeForm("robotomy request", "Bender");
-        f1->beSigned(b);
+        // f1->beSigned(b);
         f1->execute(b);
         delete f1;
     }

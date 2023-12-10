@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:57:39 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/08 18:13:55 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/08 18:25:13 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,4 @@ Intern &Intern::operator=(Intern const &rhs)
         *this = rhs;
     return (*this);
 }
-const char *Intern::FormNotFoundException::what() const throw()
-{
-    return ("Form not found");
-}
+const char *Intern::FormNotFoundException::what() const throw(){return ("Form not found");}

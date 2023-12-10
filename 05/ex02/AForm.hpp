@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:14:12 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/06 17:54:55 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/08 17:52:03 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ class AForm
             public:
                const char *what() const throw();
         };
-        class FormUntSignedException : public std::exception
+        class FormNotSignedException : public std::exception
         {
             public:
                const char *what() const throw();
