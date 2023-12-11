@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:26:26 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/11 16:16:50 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/11 23:45:37 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 #include <iostream>
 
-template <typename T> void iter(T *array, int length, void (*f)(T const &))
+template <typename T , typename Function>
+void iter(T *array, unsigned int len, Function f)
 {
-    for (int i = 0; i < length; i++)
+    for (unsigned int i = 0; i < len; i++)
         f(array[i]);
 }
-
-template <typename T> void display(T const &x){std::cout << "Value :" << x << std::endl;}

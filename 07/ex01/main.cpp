@@ -6,23 +6,40 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 14:27:28 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/11 14:32:32 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/11 23:46:12 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Iter.hpp"
 
-int main()
+class Test
 {
-    int tab[] = {0, 1, 2, 3, 4};
-    char tab2[] = "Hello";
-    float tab3[] = {0.1f, 1.2f, 2.3f, 3.4f, 4.5f};
-    double tab4[] = {0.1, 1.2, 2.3, 3.4, 4.5};
+  private:
+    int n;
+  public:
+    Test( void ) : n( 1337 ) { return; }
+    int getn( void ) const { return this->n; }
+};
 
-    iter(tab, 5, display);
-    iter(tab2, 5, display);
-    iter(tab3, 5, display);
-    iter(tab4, 5, display);
+std::ostream & operator<<( std::ostream & o, Test const & rhs )
+{
+  o << rhs.getn();
+  return o;
+}
 
-    return (0);
+template< typename T >
+void display( T& data )
+{
+  std::cout << data << std::endl;
+  return;
+}
+
+int main() {
+  std::string stab[6] = { "Hello", "World", "!" , "How", "Are", "You" };
+  Test Ttab[2];
+
+  iter( Ttab, 2, display<Test> );
+  iter( stab, 6, display<std::string> );
+
+  return 0;
 }
