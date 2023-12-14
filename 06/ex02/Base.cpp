@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 00:38:41 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/11 00:47:08 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:47:08 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,19 @@ Base * generate(void)
 
 void identify(Base* p)
 {
-    if (dynamic_cast<A*>(p))
-        std::cout << "A" << std::endl;
-    else if (dynamic_cast<B*>(p))
-        std::cout << "B" << std::endl;
-    else if (dynamic_cast<C*>(p))
-        std::cout << "C" << std::endl;
+    try
+    {
+        if (dynamic_cast<A*>(p))
+            std::cout << "A" << std::endl;
+        else if (dynamic_cast<B*>(p))
+            std::cout << "B" << std::endl;
+        else if (dynamic_cast<C*>(p))
+            std::cout << "C" << std::endl;
+    }
+    catch (const std::bad_cast& e)
+    {
+        std::cout << "Exception: " << e.what() << std::endl;
+    }
 }
 
 void identify(Base& p)
