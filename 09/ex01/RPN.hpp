@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 01:16:46 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/20 01:18:57 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/20 10:19:02 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 #include <iostream>
 #include <string>
-
+#include <stack>
+#include <sstream>
 
 class RPN
 {
