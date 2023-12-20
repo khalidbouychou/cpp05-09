@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 02:21:36 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/13 02:41:27 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/13 16:31:52 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void Span::addNumber(int n)
     if (this->_v.size() < this->_n)
         this->_v.push_back(n);
     else
-        throw std::exception();
+        throw std::out_of_range("Out of range");
 }
 
 void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end)
@@ -43,7 +43,7 @@ void Span::addNumber(std::vector<int>::iterator begin, std::vector<int>::iterato
     if (this->_v.size() + std::distance(begin, end) <= this->_n)
         this->_v.insert(this->_v.end(), begin, end);
     else
-        throw std::exception();
+        throw std::out_of_range("Out of range");
 }
 
 int Span::shortestSpan()
@@ -83,11 +83,3 @@ const char *Span::NoSpanException::what() const throw()
 {
     return ("No span to find");
 }
-
-// std::ostream &operator<<(std::ostream &o, Span const &rhs)
-// {
-//     for (unsigned int i = 0; i < rhs._v.size(); i++)
-//         o << rhs._v[i] << " ";
-//     return (o);
-// }
-
