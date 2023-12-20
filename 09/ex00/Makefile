@@ -6,7 +6,7 @@
 #    By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 02:43:40 by khbouych          #+#    #+#              #
-#    Updated: 2023/12/20 00:38:15 by khbouych         ###   ########.fr        #
+#    Updated: 2023/12/20 01:12:52 by khbouych         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,4 +34,9 @@ fclean: clean
 
 re: fclean all
 
+git :
+	@make fclean
+	@git add .
+	@git commit -m "auto commit"
+	@git push
 .PHONY: all clean fclean re

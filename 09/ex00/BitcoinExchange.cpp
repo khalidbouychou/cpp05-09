@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 19:31:19 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/20 01:07:51 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/20 01:12:19 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,8 @@ static int parse_first_colum(std::string str)
         return (0);
     if (getsizetable(tab) != 3 || tab[0] == NULL || tab[1] == NULL || tab[2] == NULL  || count_char(str, '-') > 2)
         return (0);
-    // if (std::atoi(tab[0]) < 2009 || std::atoi(tab[0]) > 2022
-    //     ||std::atoi(tab[1]) < 1 || std::atoi(tab[1]) > 12)
-    //     return (0);
+    if (std::atoi(tab[1]) < 1 || std::atoi(tab[1]) > 12)
+        return (0);
     if (std::atoi(tab[1]) == 2 &&  (std::atoi(tab[2]) < 0 || std::atoi(tab[2]) > 29))
         return (0);
     if (std::atoi(tab[1]) == 1 || std::atoi(tab[1]) == 3 || std::atoi(tab[1]) == 5
@@ -200,8 +199,6 @@ void BitcoinExchange::read_file(std::string filename)
 {
     parse(filename);
 }
-//------
-
 
 const char *BitcoinExchange::FileException::what() const throw()
 {
