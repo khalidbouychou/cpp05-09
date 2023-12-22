@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 23:36:57 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/22 14:53:28 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/22 14:56:02 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ static void with_vector(int ac, char **av)
     for (int i = 3; i < (int)jcob.size(); i++)
     {
         long int vjcob = jcob[i];
-        // std::cout << vjcob;
-        // exit(0);
         while (vjcob > whenbreak)
         {
             if ((vjcob) <= (long int)binome.size())
@@ -102,7 +100,7 @@ static void with_vector(int ac, char **av)
     clock_t end_p = clock();
     double time = static_cast<double>(end_p - start_p)/1e6 * 1000;
     std::cout << "\nTime to process a range of " << ac << " elements with std::[..] : " << time << " us (vector)" << std::endl;
-    std::cout << reserve << std::endl;
+    std::cout << "reserve :" << reserve << std::endl;
 }
 
 static void with_deque(int ac, char **av)
@@ -159,7 +157,7 @@ static void with_deque(int ac, char **av)
     clock_t end_p = clock();
     double time = static_cast<double>(end_p - start_p)/1e6 * 1000;
     std::cout << "Time to process a range of " << ac << " elements with std::[..] : " << time << " us (deque)" << std::endl;
-    std::cout << reserve << std::endl;
+    std::cout << "reserve :" << reserve << std::endl;
 }
 
 static int check_args(char **av)
