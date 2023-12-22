@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 23:36:57 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/22 01:52:19 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/22 14:53:28 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ static bool is_number(std::string str)
             return (false);
     return (true);
 }
-static long int gettime()
-{
-    timeval tnow;
-    gettimeofday(&tnow, NULL);
-    long int time = (tnow.tv_sec / 1e6) + (tnow.tv_usec);
-    return (time);
-}
 
 static long int getjcob(int i)
 {
@@ -51,7 +44,7 @@ static void printargs(int ac ,char **av)
 }
 static void with_vector(int ac, char **av)
 {
-    long int utime = gettime();
+    clock_t start_p = clock();
     std::vector<std::pair<int, int> > binome;
     int i = 1;
     int reserve = 0;
@@ -84,6 +77,8 @@ static void with_vector(int ac, char **av)
     for (int i = 3; i < (int)jcob.size(); i++)
     {
         long int vjcob = jcob[i];
+        // std::cout << vjcob;
+        // exit(0);
         while (vjcob > whenbreak)
         {
             if ((vjcob) <= (long int)binome.size())
@@ -104,59 +99,68 @@ static void with_vector(int ac, char **av)
     for (int i = 0; i < (int)v_seq.size(); i++)
         std::cout << v_seq[i] << " ";
     std::cout << "(count : " << v_seq.size() << ")" ;
-    // std::cout << "\nTime to process a range of " << ac << " elements with std::[..] : " << gettime() - start << " us (vector)" << std::endl;
-     utime = static_cast<float>(gettime() - utime);
-    std::cout << std::fixed << std::setprecision(3)<< "\nTime to process a range of " << ac << " elements with std::[..] : " << utime << " us (vector)" << std::endl;
+    clock_t end_p = clock();
+    double time = static_cast<double>(end_p - start_p)/1e6 * 1000;
+    std::cout << "\nTime to process a range of " << ac << " elements with std::[..] : " << time << " us (vector)" << std::endl;
+    std::cout << reserve << std::endl;
 }
 
-// static void with_deque(int ac, char **av)
-// {
-//     long int start = gettime();
-//     std::deque<std::pair<int, int> > binome;
-//     int i = 1;
-//     int reserve = 0;
-//     if ((ac % 2))
-//         reserve = std::atoi(av[ac]);
-//     while (i < ac)
-//     {
-//         binome.push_back(std::make_pair(std::atoi(av[i]), std::atoi(av[i + 1])));
-//         i += 2;
-//     }
-//     for (int i = 0; i < (int)binome.size(); i++)
-//     {
-//         if (binome[i].first < binome[i].second)
-//             std::swap(binome[i].first, binome[i].second);
-//     }
-//     std::sort(binome.begin(), binome.end());
-//     std::deque<int> v_seq;
-//     v_seq.push_back(binome[0].second);
-//     for (int i = 0; i < (int)binome.size(); i++)
-//         v_seq.push_back(binome[i].first);
-//     std::deque<long int> jcob;
-//     for (int i = 0; i >= 0; i++)
-//     {
-//         jcob.push_back(getjcob(i));
-//         if (jcob.back() >= (long)binome.size() + 1)
-//             break;
-//     }
-//     int whenbreak = 1;
-//     std::deque<int>::iterator vit;
-//     for (int i = 3; i < (int)jcob.size(); i++)
-//     {
-//         long int vjcob = jcob[i];
-//         while (vjcob > whenbreak)
-//         {
-//             if ((vjcob) <= (long int)binome.size())
-//             {
-//                 vit = std::lower_bound(v_seq.begin(), v_seq.end(), binome[vjcob - 1].second);
-//                 v_seq.insert(vit, binome[vjcob - 1].second);
-//             }
-//             vjcob--;
-//         }
-//         whenbreak = jcob[i];
-//     }
-//     std::cout << "Time to process a range of " << ac << " elements with std::[..] : " << gettime() - start << " us (deque)" << std::endl;
-// }
+static void with_deque(int ac, char **av)
+{
+    clock_t start_p = clock();
+    std::deque<std::pair<int, int> > binome;
+    int i = 1;
+    int reserve = 0;
+    if ((ac % 2))
+        reserve = std::atoi(av[ac]);
+    while (i < ac)
+    {
+        binome.push_back(std::make_pair(std::atoi(av[i]), std::atoi(av[i + 1])));
+        i += 2;
+    }
+    for (int i = 0; i < (int)binome.size(); i++)
+    {
+        if (binome[i].first < binome[i].second)
+            std::swap(binome[i].first, binome[i].second);
+    }
+    std::sort(binome.begin(), binome.end());
+    std::deque<int> v_seq;
+    v_seq.push_back(binome[0].second);
+    for (int i = 0; i < (int)binome.size(); i++)
+        v_seq.push_back(binome[i].first);
+    std::deque<long int> jcob;
+    for (int i = 0; i >= 0; i++)
+    {
+        jcob.push_back(getjcob(i));
+        if (jcob.back() >= (long)binome.size() + 1)
+            break;
+    }
+    int whenbreak = 1;
+    std::deque<int>::iterator vit;
+    for (int i = 3; i < (int)jcob.size(); i++)
+    {
+        long int vjcob = jcob[i];
+        while (vjcob > whenbreak)
+        {
+            if ((vjcob) <= (long int)binome.size())
+            {
+                vit = std::lower_bound(v_seq.begin(), v_seq.end(), binome[vjcob - 1].second);
+                v_seq.insert(vit, binome[vjcob - 1].second);
+            }
+            vjcob--;
+        }
+        whenbreak = jcob[i];
+    }
+    if (reserve)
+    {
+        vit = std::lower_bound(v_seq.begin(), v_seq.end(), reserve);
+        v_seq.insert(vit, reserve);
+    }
+    clock_t end_p = clock();
+    double time = static_cast<double>(end_p - start_p)/1e6 * 1000;
+    std::cout << "Time to process a range of " << ac << " elements with std::[..] : " << time << " us (deque)" << std::endl;
+    std::cout << reserve << std::endl;
+}
 
 static int check_args(char **av)
 {
@@ -180,5 +184,5 @@ void PmergeMe::parse_args(int ac, char **av)
     std::cout << "Before  : ";
     printargs(ac ,av);
     with_vector(ac, av);
-    // with_deque(ac, av);
+    with_deque(ac, av);
 }
