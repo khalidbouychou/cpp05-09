@@ -6,12 +6,13 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 23:36:57 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/22 14:56:02 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/22 16:53:58 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
+//---------------------------------------Canonical-form--------------------------------------------------------------------------
 PmergeMe::PmergeMe() {}
 PmergeMe::~PmergeMe() {}
 PmergeMe::PmergeMe(PmergeMe const &obj) { *this = obj; }
@@ -21,9 +22,11 @@ PmergeMe &PmergeMe::operator=(PmergeMe const &obj)
         *this = obj;
     return (*this);
 }
-
+//----------------------------------------Start-Program----------------------------------------------------------------------------
 static bool is_number(std::string str)
 {
+    if (str.empty())
+        return false;
     for (int i = 0; i < (int)str.length(); i++)
         if (!isdigit(str[i]) || std::atoi(str.c_str()) > 2147483647 || std::atoi(str.c_str()) < 0)
             return (false);
@@ -34,20 +37,12 @@ static long int getjcob(int i)
 {
     return i == 0 ? 0 : i == 1 ? 1 : (getjcob(i - 1) + (2 * getjcob(i - 2)));
 }
-
-static void printargs(int ac ,char **av)
+//--for-vector-----------------------------------------------
+static std::vector <int> vector(int ac, char **av)
 {
-    int i = 1;
-    while (i <= ac)
-        std::cout << " " << av[i++];
-    std::cout << " (count : " << ac << ")" ;
-}
-static void with_vector(int ac, char **av)
-{
-    clock_t start_p = clock();
     std::vector<std::pair<int, int> > binome;
     int i = 1;
-    int reserve = 0;
+    int reserve = -1;
     if ((ac % 2) == 1)
         reserve = std::atoi(av[ac]);
     while (i < ac)
@@ -88,27 +83,19 @@ static void with_vector(int ac, char **av)
         }
         whenbreak = jcob[i];
     }
-    if (reserve)
+    if (reserve != -1)
     {
         vit = std::lower_bound(v_seq.begin(), v_seq.end(), reserve);
         v_seq.insert(vit, reserve);
     }
-    std::cout << "\nAfter   : " << " ";
-    for (int i = 0; i < (int)v_seq.size(); i++)
-        std::cout << v_seq[i] << " ";
-    std::cout << "(count : " << v_seq.size() << ")" ;
-    clock_t end_p = clock();
-    double time = static_cast<double>(end_p - start_p)/1e6 * 1000;
-    std::cout << "\nTime to process a range of " << ac << " elements with std::[..] : " << time << " us (vector)" << std::endl;
-    std::cout << "reserve :" << reserve << std::endl;
+    return v_seq;
 }
-
-static void with_deque(int ac, char **av)
+//------------for-deque------------------------------------------------------------------------------------
+static std::deque <int> deque(int ac, char **av)
 {
-    clock_t start_p = clock();
     std::deque<std::pair<int, int> > binome;
     int i = 1;
-    int reserve = 0;
+    int reserve = -1;
     if ((ac % 2))
         reserve = std::atoi(av[ac]);
     while (i < ac)
@@ -122,10 +109,10 @@ static void with_deque(int ac, char **av)
             std::swap(binome[i].first, binome[i].second);
     }
     std::sort(binome.begin(), binome.end());
-    std::deque<int> v_seq;
-    v_seq.push_back(binome[0].second);
+    std::deque<int> d_seq;
+    d_seq.push_back(binome[0].second);
     for (int i = 0; i < (int)binome.size(); i++)
-        v_seq.push_back(binome[i].first);
+        d_seq.push_back(binome[i].first);
     std::deque<long int> jcob;
     for (int i = 0; i >= 0; i++)
     {
@@ -142,22 +129,19 @@ static void with_deque(int ac, char **av)
         {
             if ((vjcob) <= (long int)binome.size())
             {
-                vit = std::lower_bound(v_seq.begin(), v_seq.end(), binome[vjcob - 1].second);
-                v_seq.insert(vit, binome[vjcob - 1].second);
+                vit = std::lower_bound(d_seq.begin(), d_seq.end(), binome[vjcob - 1].second);
+                d_seq.insert(vit, binome[vjcob - 1].second);
             }
             vjcob--;
         }
         whenbreak = jcob[i];
     }
-    if (reserve)
+    if (reserve != -1)
     {
-        vit = std::lower_bound(v_seq.begin(), v_seq.end(), reserve);
-        v_seq.insert(vit, reserve);
+        vit = std::lower_bound(d_seq.begin(), d_seq.end(), reserve);
+        d_seq.insert(vit, reserve);
     }
-    clock_t end_p = clock();
-    double time = static_cast<double>(end_p - start_p)/1e6 * 1000;
-    std::cout << "Time to process a range of " << ac << " elements with std::[..] : " << time << " us (deque)" << std::endl;
-    std::cout << "reserve :" << reserve << std::endl;
+    return d_seq;
 }
 
 static int check_args(char **av)
@@ -171,16 +155,37 @@ static int check_args(char **av)
     }
     return (1);
 }
+static void printbefore(int ac ,char **av)
+{
+    std::cout << "Before  : ";
+    int i = 1;
+    while (i <= ac)
+        std::cout  << av[i++] << " ";
+}
+static void printafter(std::vector <int> vector)
+{
+    std::cout << "\nAfter   : ";
+    for (size_t i = 0; i < vector.size(); i++)
+        std::cout << vector[i] << " ";
+}
 void PmergeMe::parse_args(int ac, char **av)
 {
-    --ac;
-    if (!check_args(av))
+    if (ac < 3|| !check_args(av))
     {
         std::cout << "Error" << std::endl;
-        return;
+        exit(0);
     }
-    std::cout << "Before  : ";
-    printargs(ac ,av);
-    with_vector(ac, av);
-    with_deque(ac, av);
+    --ac;
+    printbefore(ac ,av);
+    //---------------------vector-----------------------------------
+    clock_t start_vec = clock();
+    std::vector <int> v_seq = vector(ac, av);
+    double tvec = static_cast<double>(clock() - start_vec)/1e6 * 1000;
+    printafter(v_seq);
+    std::cout << "\nTime to process a range of " << ac << " elements with std::[..] : " << tvec << " ms (vector)" << std::endl;
+    //----------------------deque-----------------------------------
+    clock_t start_deq = clock();
+    std::deque <int> d_seq = deque(ac, av);
+    double tdeq = static_cast<double>(clock() - start_deq )/1e6 * 1000;
+    std::cout << "Time to process a range of " << ac << " elements with std::[..] : " << tdeq << " ms (deque)" << std::endl;
 }
