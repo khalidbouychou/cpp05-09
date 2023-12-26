@@ -6,7 +6,7 @@
 /*   By: khbouych <khbouych@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 02:44:56 by khbouych          #+#    #+#             */
-/*   Updated: 2023/12/13 16:50:06 by khbouych         ###   ########.fr       */
+/*   Updated: 2023/12/26 13:18:48 by khbouych         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ class MutantStack : public std::stack<T>
 {
     public:
         MutantStack();
-        MutantStack(MutantStack const &src);
+        MutantStack(MutantStack const &obj);
         ~MutantStack();
-        MutantStack &operator=(MutantStack const &rhs);
+        MutantStack &operator=(MutantStack const &obj);
 
         typedef typename std::stack<T>::container_type::iterator iterator;
         iterator begin();
@@ -34,16 +34,16 @@ template <typename T>
 MutantStack<T>::MutantStack() : std::stack<T>(){}
 
 template <typename T>
-MutantStack<T>::MutantStack(MutantStack const &src) : std::stack<T>(src){}
+MutantStack<T>::MutantStack(MutantStack const &obj) : std::stack<T>(obj){}
 
 template <typename T>
 MutantStack<T>::~MutantStack(){}
 
 template <typename T>
-MutantStack<T> &MutantStack<T>::operator=(MutantStack const &rhs)
+MutantStack<T> &MutantStack<T>::operator=(MutantStack const &obj)
 {
-    if (this != &rhs)
-        std::stack<T>::operator=(rhs);
+    if (this != &obj)
+        std::stack<T>::operator=(obj);
     return (*this);
 }
 
